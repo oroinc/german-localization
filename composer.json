@@ -1,0 +1,25 @@
+{
+    "name": "oro/german-localization",
+    "description": "Oro German Localization",
+    "homepage": "https://github.com/orocommerce/german-localization",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Oro, Inc",
+            "homepage": "http://www.orocommerce.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Oro\\Bundle\\GermanLocalizationBundle\\": ""},
+        "exclude-from-classmap": ["/Tests/"]
+    },
+    "require": {
+        "php": ">=7.0",
+        "oro/commerce": "1.2.*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2.x-dev"
+        }
+    }
+}
