@@ -15,7 +15,10 @@
     },
     "require": {
         "php": ">=7.0",
-        "oro/commerce": "1.2.*"
+        "oro/commerce": "1.2.*",
+        "oro/commerce-wirecard": "1.2.*",
+        "oro/commerce-infinitepay": "1.2.*",
+        "oro/commerce-dpd": "1.2.*"
     },
     "extra": {
         "branch-alias": {
