@@ -47,8 +47,6 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
         /* @var $configManager ConfigManager */
         $configManager = $this->container->get('oro_config.global');
 
-        //Set German language as default
-        $configManager->set(Configuration::getConfigKeyByName(Configuration::LANGUAGE), self::LOCALE);
         //Add German language to the list of enabled
         $enabledLanguages = (array)$configManager->get(Configuration::getConfigKeyByName('languages'));
         $configManager->set(
@@ -56,11 +54,6 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
             array_merge($enabledLanguages, [self::LOCALE])
         );
 
-        //Set German localization as default
-        $configManager->set(
-            Configuration::getConfigKeyByName(Configuration::DEFAULT_LOCALIZATION),
-            $localization->getId()
-        );
         //Add German localization to the list of enabled
         $enabledLocalizations = $configManager->get(
             Configuration::getConfigKeyByName(Configuration::ENABLED_LOCALIZATIONS)
