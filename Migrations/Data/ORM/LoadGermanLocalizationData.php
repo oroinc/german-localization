@@ -1,22 +1,23 @@
 <?php
 
-namespace Oro\Bundle\GermanLocalizationBundle\Migrations\Data\ORM\LoadGermanLocalizationData;
+namespace Oro\Bundle\GermanLocalizationBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Oro\Bundle\UserBundle\Entity\User;
-use Oro\Bundle\UserBundle\Migrations\Data\ORM\LoadRolesData;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Intl\Intl;
 
 use Oro\Bundle\ConfigBundle\Config\ConfigManager;
+use Oro\Bundle\CurrencyBundle\Migrations\Data\ORM\SetDefaultCurrencyFromLocale;
 use Oro\Bundle\LocaleBundle\Entity\Localization;
 use Oro\Bundle\LocaleBundle\DependencyInjection\Configuration;
 use Oro\Bundle\LocaleBundle\Migrations\Data\ORM\LoadLocalizationData;
 use Oro\Bundle\TranslationBundle\Entity\Language;
+use Oro\Bundle\UserBundle\Entity\User;
+use Oro\Bundle\UserBundle\Migrations\Data\ORM\LoadRolesData;
 
 class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwareInterface, DependentFixtureInterface
 {
@@ -30,7 +31,6 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
     public function load(ObjectManager $manager)
     {
         $language = $manager->getRepository(Language::class)->findOneBy(['code' => self::LOCALE,]);
-
         if (!$language) {
             $language = $this->createLanguage(self::LOCALE, $manager);
             $manager->persist($language);
@@ -51,8 +51,11 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
         $enabledLanguages = (array)$configManager->get(Configuration::getConfigKeyByName('languages'));
         $configManager->set(
             Configuration::getConfigKeyByName('languages'),
-            array_merge($enabledLanguages, [self::LOCALE])
+            array_unique(array_merge($enabledLanguages, [self::LOCALE]))
         );
+
+        //Set Locale
+        $configManager->set('oro_locale.locale', self::LOCALE);
 
         //Add German localization to the list of enabled
         $enabledLocalizations = $configManager->get(
@@ -60,7 +63,7 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
         );
         $configManager->set(
             Configuration::getConfigKeyByName(Configuration::ENABLED_LOCALIZATIONS),
-            array_merge($enabledLocalizations, [$localization->getId()])
+            array_unique(array_merge($enabledLocalizations, [$localization->getId()]))
         );
 
         $configManager->flush();
@@ -76,7 +79,7 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
     protected function getLocalization(ObjectManager $manager, $locale, Language $language)
     {
         return $manager->getRepository('OroLocaleBundle:Localization')
-            ->findOneBy(['language' => $language,'formattingCode' => $locale,]);
+            ->findOneBy(['language' => $language, 'formattingCode' => $locale,]);
     }
 
     /**
@@ -155,6 +158,9 @@ class LoadGermanLocalizationData extends AbstractFixture implements ContainerAwa
      */
     public function getDependencies()
     {
-        return [LoadLocalizationData::class];
+        return [
+            LoadLocalizationData::class,
+            SetDefaultCurrencyFromLocale::class
+        ];
     }
 }
