@@ -15,10 +15,10 @@
     },
     "require": {
         "php": ">=7.0",
-        "oro/commerce": "1.x-dev",
-        "oro/commerce-wirecard": "1.x-dev",
-        "oro/commerce-infinitepay": "1.x-dev",
-        "oro/commerce-dpd": "1.x-dev"
+        "oro/commerce": "1.4.*",
+        "oro/commerce-wirecard": "1.4.*",
+        "oro/commerce-infinitepay": "1.4.*",
+        "oro/commerce-dpd": "1.4.*"
     },
     "repositories": {
         "oro": {
@@ -34,7 +34,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "2.4.x-dev"
         }
     }
 }
