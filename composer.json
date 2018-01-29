@@ -15,10 +15,10 @@
     },
     "require": {
         "php": "7.1.*",
-        "oro/commerce": "1.6.x-dev",
-        "oro/commerce-wirecard": "1.6.x-dev",
-        "oro/commerce-infinitepay": "1.6.x-dev",
-        "oro/commerce-dpd": "1.6.x-dev"
+        "oro/commerce": "1.6.*",
+        "oro/commerce-wirecard": "1.6.*",
+        "oro/commerce-infinitepay": "1.6.*",
+        "oro/commerce-dpd": "1.6.*"
     },
     "repositories": {
         "oro": {
