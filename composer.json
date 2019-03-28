@@ -14,10 +14,10 @@
         "exclude-from-classmap": ["/Tests/"]
     },
     "require": {
-        "oro/commerce": "3.1.*",
-        "oro/commerce-wirecard": "3.1.*",
-        "oro/commerce-infinitepay": "3.1.*",
-        "oro/commerce-dpd": "3.1.*"
+        "oro/commerce": "4.0.*",
+        "oro/commerce-wirecard": "4.0.*",
+        "oro/commerce-infinitepay": "4.0.*",
+        "oro/commerce-dpd": "4.0.*"
     },
     "repositories": {
         "oro": {
@@ -33,7 +33,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "3.1-dev"
+            "dev-master": "4.0-dev"
         }
     }
 }
