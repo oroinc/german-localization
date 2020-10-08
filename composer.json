@@ -15,7 +15,6 @@
     },
     "require": {
         "oro/commerce": "4.2.*",
-        "oro/commerce-wirecard": "4.2.*",
         "oro/commerce-infinitepay": "4.2.*",
         "oro/commerce-dpd": "4.2.*"
     },
