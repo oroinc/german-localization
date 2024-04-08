@@ -14,9 +14,9 @@
         "exclude-from-classmap": ["/Tests/"]
     },
     "require": {
-        "oro/commerce": "6.0.*",
-        "oro/commerce-infinitepay": "6.0.*",
-        "oro/commerce-dpd": "6.0.*"
+        "oro/commerce": "6.1.*",
+        "oro/commerce-infinitepay": "6.1.*",
+        "oro/commerce-dpd": "6.1.*"
     },
     "repositories": {
         "oro": {
@@ -28,7 +28,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "6.0-dev"
+            "dev-master": "6.1-dev"
         }
     }
 }
